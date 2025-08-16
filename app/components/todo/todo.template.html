@@ -1,0 +1,26 @@
+<div class="todo-container">
+  <h2>To-Do List</h2>
+  <form ng-submit="addTodo()">
+    <input type="text" ng-model="newTodo" placeholder="Enter a new task" required>
+    <div class="add-task" ng-click="addTodo()">Add Task</div>
+  </form>
+  <div class="filter-controls" style="display: none;">
+    <span>Show: </span>
+    <div class="filter-all" ng-click="filter = 'all'" ng-class="{active: filter === 'all'}">All</div>
+  </div>
+  <p>Total {{activeCount()}} task{{activeCount() !== 1 ? 's' : ''}}</p>
+  <ul>
+    <li ng-repeat="todo in filteredTodos()">
+      <div ng-if="editingTodo && editingTodo.id === todo.id">
+        <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)" ng-keypress="$event.keyCode === 13 && saveEdit(todo)">
+        <div class="save-task" ng-click="saveEdit(todo)">Save</div>
+        <div class="cancel-task" ng-click="cancelEdit()">Cancel</div>
+      </div>
+      <div ng-if="!editingTodo || editingTodo.id !== todo.id">
+        <span ng-dblclick="editTodo(todo)">{{ todo.text }}</span>
+        <div class="trash-icon" ng-click="removeTodo($index)">🗑️</div>
+      </div>
+    </li>
+  </ul>
+  <p ng-show="filteredTodos().length === 0">No tasks yet!</p>
+</div>

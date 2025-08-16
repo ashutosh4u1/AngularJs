@@ -1,0 +1,62 @@
+angular.module('todoApp')
+  .controller('TodoController', ['$scope', function($scope) {
+    $scope.todos = [
+      { id: 1, text: 'Task 1' },
+      { id: 2, text: 'Task 2' },
+      { id: 3, text: 'Task 3' },
+      { id: 4, text: 'Task 4' },
+      { id: 5, text: 'Task 5' },
+    ];
+    $scope.newTodo = '';
+    $scope.filter = 'all'; // Default filter: all
+    $scope.editingTodo = null; // Track todo being edited
+
+    // Add a new todo
+    $scope.addTodo = function() {
+      if ($scope.newTodo) {
+        $scope.todos.push({
+          id: $scope.todos.length + 1,
+          text: $scope.newTodo
+        });
+        $scope.newTodo = '';
+        $scope.$applyAsync(); // Ensure UI updates
+      }
+    };
+
+    // Remove a todo
+    $scope.removeTodo = function(index) {
+      $scope.todos.splice(index, 1);
+      $scope.$applyAsync(); // Ensure UI updates
+    };
+
+    // Start editing a todo
+    $scope.editTodo = function(todo) {
+      $scope.editingTodo = angular.copy(todo); // Copy to allow canceling
+      $scope.$applyAsync(); // Ensure UI updates
+    };
+
+    // Save edited todo
+    $scope.saveEdit = function(todo) {
+      if ($scope.editingTodo && $scope.editingTodo.text) {
+        todo.text = $scope.editingTodo.text;
+        $scope.editingTodo = null;
+        $scope.$applyAsync(); // Ensure UI updates
+      }
+    };
+
+    // Cancel editing
+    $scope.cancelEdit = function() {
+      $scope.editingTodo = null;
+      $scope.$applyAsync(); // Ensure UI updates
+    };
+
+    // Filter todos based on selection
+    $scope.filteredTodos = function() {
+      return $scope.todos; // Only 'all' filter is relevant
+    };
+
+    // Count all todos
+    $scope.activeCount = function() {
+      return $scope.todos.length;
+    };
+  }]);
