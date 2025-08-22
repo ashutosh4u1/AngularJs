@@ -2,23 +2,23 @@
   <h2>To-Do List</h2>
   <form ng-submit="addTodo()">
     <input type="text" ng-model="newTodo" placeholder="Enter a new task" required>
-    <div class="add-task" ng-click="addTodo()">Add Task</div>
+    <div class="add-task" ng-click="addTodo()" tabindex="0">Add Task</div>
   </form>
-  <div class="filter-controls" style="display: none;">
+  <div class="filter-controls" style="display: none;" tabindex="0">
     <span>Show: </span>
-    <div class="filter-all" ng-click="filter = 'all'" ng-class="{active: filter === 'all'}">All</div>
+    <div class="filter-all" ng-click="filter = 'all'" ng-class="{active: filter === 'all'}" tabindex="0">All</div>
   </div>
   <p>Total {{activeCount()}} task{{activeCount() !== 1 ? 's' : ''}}</p>
   <ul>
-    <li ng-repeat="todo in filteredTodos()">
+    <li ng-repeat="todo in filteredTodos()" tabindex="0">
       <div ng-if="editingTodo && editingTodo.id === todo.id">
-        <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)" ng-keypress="$event.keyCode === 13 && saveEdit(todo)">
-        <div class="save-task" ng-click="saveEdit(todo)">Save</div>
-        <div class="cancel-task" ng-click="cancelEdit()">Cancel</div>
+        <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)" ng-keypress="$event.keyCode === 13 && saveEdit(todo)" tabindex="0">
+        <div class="save-task" ng-click="saveEdit(todo)" tabindex="0">Save</div>
+        <div class="cancel-task" ng-click="cancelEdit()" tabindex="0">Cancel</div>
       </div>
       <div ng-if="!editingTodo || editingTodo.id !== todo.id">
-        <span ng-dblclick="editTodo(todo)">{{ todo.text }}</span>
-        <div class="trash-icon" ng-click="removeTodo($index)">🗑️</div>
+        <span ng-dblclick="editTodo(todo)" tabindex="0">{{ todo.text }}</span>
+        <div class="trash-icon" ng-click="removeTodo($index)" tabindex="0">🗑️</div>
       </div>
     </li>
   </ul>
