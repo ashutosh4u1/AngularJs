@@ -1,0 +1,1 @@
+{"summary":{"file":"todo.controller.js","changesMade":0,"changeTypes":[]},"fixedCode":"angular.module('todoApp').component('taskList', {templateUrl: 'task-list.html', controller: TaskListController});","newFiles":[{"fileName":"task-list.html","code":"<div ng-repeat=\"task in $ctrl.tasks\">{{task.id}} - {{task.text}}</div>"}]}

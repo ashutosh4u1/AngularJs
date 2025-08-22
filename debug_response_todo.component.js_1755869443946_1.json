@@ -1,0 +1,1 @@
+{"summary":{"file":"todo.component.js","changesMade":0,"changeTypes":["Added AngularJS component taskList"]},"fixedCode":"angular.module('todoApp').component('taskList', {templateUrl: 'app/components/todo/todo.template.html',controller: 'TodoController'});","newFiles":[]}

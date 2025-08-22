@@ -1,0 +1,1 @@
+{"summary":{"file":"app.module.js","changesMade":1,"changeTypes":["Added AngularJS component called taskList"]},"fixedCode":"angular.module('todoApp', ['ngRoute', 'taskList']);","newFiles":[]}
