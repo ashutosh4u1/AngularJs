@@ -1,0 +1,1 @@
+{"summary":{"file":"todo.component.js","changesMade":1,"changeTypes":["Keyboard accessibility (WCAG 2.1.1)"]},"fixedCode":"angular.module('todoApp').component('todo', {templateUrl: 'app/components/todo/todo.template.html',controller: 'TodoController',bindings: {tabindex: '0'}});","newFiles":[]}
