@@ -1,0 +1,1 @@
+{"summary":{"file":"app.module.js","changesMade":0,"changeTypes":["Keyboard accessibility (WCAG 2.1.1)"]},"fixedCode":"angular.module('todoApp', ['ngRoute']);","newFiles":[]}
