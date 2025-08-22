@@ -1,5 +1,1 @@
-angular.module('todoApp')
-  .component('todo', {
-    templateUrl: 'app/components/todo/todo.template.html',
-    controller: 'TodoController'
-  });
+angular.module('todoApp').component('todo', {templateUrl: 'app/components/todo/todo.template.html', controller: 'TodoController', tabindex: '0'});
