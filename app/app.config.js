@@ -5,6 +5,10 @@ angular.module('todoApp')
         template: '<todo></todo>',
         controller: 'TodoController'
       })
+      .when('/task', {
+        template: '<task></task>',
+        controller: 'TaskController'
+      })
       .otherwise({
         redirectTo: '/'
       });

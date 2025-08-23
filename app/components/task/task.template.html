@@ -1,0 +1,54 @@
+<div class="container">
+  <h1>Nested Inaccessible Task List</h1>
+
+  <!-- Add Task Section -->
+  <div class="task-form">
+    <div class="form-row">
+      <span class="label">Title</span>
+      <span class="fake-input" contenteditable="true" ng-model="vm.newTask.title"></span>
+    </div>
+    <div class="form-row">
+      <span class="label">Description</span>
+      <span class="fake-input" contenteditable="true" ng-model="vm.newTask.description"></span>
+    </div>
+    <div class="form-row">
+      <span class="label">Due Date</span>
+      <span class="fake-input" contenteditable="true" ng-model="vm.newTask.dueDate"></span>
+    </div>
+    <div class="form-row">
+      <span class="label">Status</span>
+      <span class="fake-input" contenteditable="true" ng-model="vm.newTask.status">Pending</span>
+    </div>
+    <div class="form-actions">
+      <div class="btn" ng-click="vm.addTask()">Add Task</div>
+    </div>
+  </div>
+
+  <!-- Task List Section -->
+  <div class="task-table">
+    <div class="row header">
+      <div class="cell">Title</div>
+      <div class="cell">Description</div>
+      <div class="cell">Due Date</div>
+      <div class="cell">Status</div>
+      <div class="cell">Actions</div>
+    </div>
+    <div class="row" ng-repeat="task in vm.tasks">
+      <div class="cell">{{task.title}}</div>
+      <div class="cell">{{task.description}}</div>
+      <div class="cell">{{task.dueDate | date:'yyyy-MM-dd'}}</div>
+      <div class="cell">{{task.status}}</div>
+      <div class="cell">
+        <div class="nested-btn" ng-click="vm.editTask(task)">
+          <span>Edit</span>
+          <span class="icon">✎</span>
+        </div>
+        <div class="nested-btn" ng-click="vm.deleteTask($index)">
+          <span>Delete</span>
+          <span class="icon">🗑</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
