@@ -59,4 +59,9 @@ angular.module('todoApp')
     $scope.activeCount = function() {
       return $scope.todos.length;
     };
+
+    // Add a new component taskList
+    // Display and manage a list of tasks
+    // Code for taskList component goes here
+
   }]);
