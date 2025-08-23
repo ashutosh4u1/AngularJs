@@ -1,0 +1,1 @@
+angular.module('app').component('taskList', {controller: TaskListController, templateUrl: 'task-list.component.html', bindings: {tasks: '='}});
