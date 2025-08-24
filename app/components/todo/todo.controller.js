@@ -51,20 +51,6 @@ angular.module("todoApp").controller("TodoController", [
       });
     }
 
-    // Highlight on focus (Tab navigation)
-    $scope.handleFocus = function (index) {
-      currentHighlight = index;
-      drawItems();
-    };
-
-    // Activate with Enter/Space
-    $scope.handleKey = function (event, index) {
-      if (event.key === "Enter" || event.key === " ") {
-        alert("Activated: " + $scope.items[index].label);
-        event.preventDefault();
-      }
-    };
-
     $scope.newTask = { status: "Pending" };
 
     // Add a new todo

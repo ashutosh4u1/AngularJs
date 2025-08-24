@@ -1,11 +1,6 @@
 <div>
   <div>
     <canvas id="myCanvas" width="400" height="200"></canvas>
-    <!-- Hidden focusable elements -->
-    <div ng-repeat="item in items track by $index" class="canvas-item" tabindex="0" ng-focus="handleFocus($index)"
-      ng-keydown="handleKey($event, $index)">
-      {{item.label}}
-    </div>
   </div>
 
   <div class="todo-container">
