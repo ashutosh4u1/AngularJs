@@ -98,6 +98,7 @@ canvas {
   width: 1px;
   height: 1px;
   overflow: hidden;
+  tabindex: 0;
 }
 
 /* Fake Form */

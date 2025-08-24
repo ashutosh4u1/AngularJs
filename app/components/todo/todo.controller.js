@@ -35,6 +35,7 @@ angular.module("todoApp").controller("TodoController", [
       canvas = document.getElementById("myCanvas");
       ctx = canvas.getContext("2d");
       drawItems();
+      createCanvasItems();
     });
 
     function drawItems() {
@@ -48,6 +49,26 @@ angular.module("todoApp").controller("TodoController", [
           ctx.lineWidth = 4;
           ctx.strokeRect(item.x - 2, item.y - 2, item.w + 4, item.h + 4);
         }
+      });
+    }
+
+    function createCanvasItems() {
+      $scope.items.forEach((item, i) => {
+        var div = document.createElement("div");
+        div.setAttribute("tabindex", "0");
+        div.setAttribute("role", "button");
+        div.setAttribute("aria-label", item.label);
+        div.style.position = "absolute";
+        div.style.left = item.x + "px";
+        div.style.top = item.y + "px";
+        div.style.width = item.w + "px";
+        div.style.height = item.h + "px";
+        div.style.backgroundColor = item.color;
+        div.addEventListener("click", () => {
+          currentHighlight = i;
+          drawItems();
+        });
+        document.body.appendChild(div);
       });
     }
 
