@@ -1,0 +1,13 @@
+{
+	"summary": {
+		"file": "canvas.js",
+		"wcagLevel": "A+AA",
+		"issuesFound": 0,
+		"issuesFixed": 0,
+		"fixPercentage": "0%",
+		"issueTypes": []
+	},
+	"fixedCode": "
+${content}
+"
+}
