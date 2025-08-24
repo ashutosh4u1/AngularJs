@@ -124,5 +124,16 @@ angular.module("todoApp").controller("TodoController", [
     $scope.deleteTask = function (index) {
       $scope.tasks.splice(index, 1);
     };
+
+    $scope.handleFocus = function (index) {
+      currentHighlight = index;
+      drawItems();
+    };
+
+    $scope.handleKey = function (event, index) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        // Perform action for Enter/Space key
+      }
+    };
   },
 ]);
