@@ -124,5 +124,17 @@ angular.module("todoApp").controller("TodoController", [
     $scope.deleteTask = function (index) {
       $scope.tasks.splice(index, 1);
     };
+
+    $scope.handleFocus = function(index) {
+      // highlight corresponding item on canvas
+      highlightCanvasItem(index);
+    };
+
+    $scope.handleKey = function(event, index) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        activateCanvasItem(index);
+        event.preventDefault();
+      }
+    };
   },
 ]);
