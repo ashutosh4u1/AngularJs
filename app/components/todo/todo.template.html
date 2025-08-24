@@ -1,26 +1,94 @@
-<div class="todo-container">
-  <h2>To-Do List</h2>
-  <form ng-submit="addTodo()">
-    <input type="text" ng-model="newTodo" placeholder="Enter a new task" required>
-    <div class="add-task" ng-click="addTodo()">Add Task</div>
-  </form>
-  <div class="filter-controls" style="display: none;">
-    <span>Show: </span>
-    <div class="filter-all" ng-click="filter = 'all'" ng-class="{active: filter === 'all'}">All</div>
+<div>
+  <div>
+    <canvas id="myCanvas" width="400" height="200"></canvas>
+    <!-- Hidden focusable elements -->
+    <div ng-repeat="item in items track by $index" class="canvas-item" tabindex="0" ng-focus="handleFocus($index)"
+      ng-keydown="handleKey($event, $index)">
+      {{item.label}}
+    </div>
   </div>
-  <p>Total {{activeCount()}} task{{activeCount() !== 1 ? 's' : ''}}</p>
-  <ul>
-    <li ng-repeat="todo in filteredTodos()">
-      <div ng-if="editingTodo && editingTodo.id === todo.id">
-        <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)" ng-keypress="$event.keyCode === 13 && saveEdit(todo)">
-        <div class="save-task" ng-click="saveEdit(todo)">Save</div>
-        <div class="cancel-task" ng-click="cancelEdit()">Cancel</div>
+
+  <div class="todo-container">
+    <h2>To-Do List</h2>
+    <form ng-submit="addTodo()">
+      <input type="text" ng-model="newTodo" placeholder="Enter a new task" required>
+      <div class="add-task" ng-click="addTodo()">Add Task</div>
+    </form>
+    <div class="filter-controls" style="display: none;">
+      <span>Show: </span>
+      <div class="filter-all" ng-click="filter = 'all'" ng-class="{active: filter === 'all'}">All</div>
+    </div>
+    <p>Total {{activeCount()}} task{{activeCount() !== 1 ? 's' : ''}}</p>
+    <ul>
+      <li ng-repeat="todo in filteredTodos()">
+        <div ng-if="editingTodo && editingTodo.id === todo.id">
+          <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)"
+            ng-keypress="$event.keyCode === 13 && saveEdit(todo)">
+          <div class="save-task" ng-click="saveEdit(todo)">Save</div>
+          <div class="cancel-task" ng-click="cancelEdit()">Cancel</div>
+        </div>
+        <div ng-if="!editingTodo || editingTodo.id !== todo.id">
+          <span ng-dblclick="editTodo(todo)">{{ todo.text }}</span>
+          <div class="trash-icon" ng-click="removeTodo($index)">🗑️</div>
+        </div>
+      </li>
+    </ul>
+    <p ng-show="filteredTodos().length === 0">No tasks yet!</p>
+  </div>
+
+  <div class="container">
+
+    <h1>Nested Inaccessible Task List</h1>
+
+    <!-- Add Task Section -->
+    <div class="task-form">
+      <div class="form-row">
+        <span class="label">Title</span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.title"></span>
       </div>
-      <div ng-if="!editingTodo || editingTodo.id !== todo.id">
-        <span ng-dblclick="editTodo(todo)">{{ todo.text }}</span>
-        <div class="trash-icon" ng-click="removeTodo($index)">🗑️</div>
+      <div class="form-row">
+        <span class="label">Description</span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.description"></span>
       </div>
-    </li>
-  </ul>
-  <p ng-show="filteredTodos().length === 0">No tasks yet!</p>
+      <div class="form-row">
+        <span class="label">Due Date</span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.dueDate"></span>
+      </div>
+      <div class="form-row">
+        <span class="label">Status</span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.status">Pending</span>
+      </div>
+      <div class="form-actions">
+        <div class="btn" ng-click="vm.addTask()">Add Task</div>
+      </div>
+    </div>
+
+    <!-- Task List Section -->
+    <div class="task-table">
+      <div class="row header">
+        <div class="cell">Title</div>
+        <div class="cell">Description</div>
+        <div class="cell">Due Date</div>
+        <div class="cell">Status</div>
+        <div class="cell">Actions</div>
+      </div>
+      <div class="row" ng-repeat="task in vm.tasks">
+        <div class="cell">{{task.title}}</div>
+        <div class="cell">{{task.description}}</div>
+        <div class="cell">{{task.dueDate | date:'yyyy-MM-dd'}}</div>
+        <div class="cell">{{task.status}}</div>
+        <div class="cell">
+          <div class="nested-btn" ng-click="vm.editTask(task)">
+            <span>Edit</span>
+            <span class="icon">✎</span>
+          </div>
+          <div class="nested-btn" ng-click="vm.deleteTask($index)">
+            <span>Delete</span>
+            <span class="icon">🗑</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
