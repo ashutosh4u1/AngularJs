@@ -124,5 +124,18 @@ angular.module("todoApp").controller("TodoController", [
     $scope.deleteTask = function (index) {
       $scope.tasks.splice(index, 1);
     };
+
+    // Accessibility support for canvas items
+    $scope.handleFocus = function (canvasIndex, itemIndex) {
+      currentHighlight = itemIndex;
+      drawItems();
+    };
+
+    $scope.handleKey = function (canvasIndex, itemIndex) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        // Trigger action for the selected item
+        // Add your action logic here
+      }
+    };
   },
 ]);

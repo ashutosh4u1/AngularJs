@@ -11,8 +11,25 @@
   <script src="app/app.config.js"></script>
   <script src="app/components/todo/todo.component.js"></script>
   <script src="app/components/todo/todo.controller.js"></script>
+  <script>
+    angular.module('todoApp').controller('CanvasController', ['$scope', function($scope) {
+      $scope.items = [{ label: 'Item 1' }, { label: 'Item 2' }, { label: 'Item 3' }];
+      $scope.handleFocus = function(canvasIndex, itemIndex) {
+        // Highlight the focused canvas item
+      };
+      $scope.handleKey = function(canvasIndex, itemIndex) {
+        // Trigger action for the focused canvas item
+      };
+    }]);
+  </script>
 </head>
 <body>
   <div ng-view></div>
+  <canvas id="canvas1" aria-label="Canvas 1" tabindex="0">
+    <div ng-repeat="item in items track by $index" tabindex="0" class="canvas-item" role="button" aria-label="{{item.label}}" ng-focus="handleFocus($index)" ng-keydown="handleKey($index)">{{item.label}}</div>
+  </canvas>
+  <canvas id="canvas2" aria-label="Canvas 2" tabindex="0">
+    <div ng-repeat="item in items track by $index" tabindex="0" class="canvas-item" role="button" aria-label="{{item.label}}" ng-focus="handleFocus($index)" ng-keydown="handleKey($index)">{{item.label}}</div>
+  </canvas>
 </body>
 </html>
