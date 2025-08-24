@@ -1,6 +1,11 @@
 <div>
   <div>
     <canvas id="myCanvas" width="400" height="200"></canvas>
+    <div class="canvas-items" aria-hidden="false">
+      <div ng-repeat="item in canvasItems" class="canvas-item" tabindex="0" role="button" aria-label="{{item.label}}" ng-focus="handleFocus($index)" ng-keydown="handleKey($event, $index)">
+        {{item.label}}
+      </div>
+    </div>
   </div>
 
   <div class="todo-container">
@@ -17,8 +22,7 @@
     <ul>
       <li ng-repeat="todo in filteredTodos()">
         <div ng-if="editingTodo && editingTodo.id === todo.id">
-          <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)"
-            ng-keypress="$event.keyCode === 13 && saveEdit(todo)">
+          <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)" ng-keypress="$event.keyCode === 13 && saveEdit(todo)">
           <div class="save-task" ng-click="saveEdit(todo)">Save</div>
           <div class="cancel-task" ng-click="cancelEdit()">Cancel</div>
         </div>
