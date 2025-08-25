@@ -98,6 +98,7 @@ canvas {
   width: 1px;
   height: 1px;
   overflow: hidden;
+  tabindex: 0;
 }
 
 /* Fake Form */
@@ -170,6 +171,7 @@ canvas {
     border-radius: 4px;
     cursor: pointer;
     margin-right: 4px;
+    tabindex: 0;
   }
 
   .nested-btn:hover {
