@@ -1,30 +1,30 @@
 <div>
   <div>
-    <canvas id="myCanvas" width="400" height="200"></canvas>
+    <canvas id="myCanvas" width="400" height="200" tabindex="0"></canvas>
   </div>
 
   <div class="todo-container">
     <h2>To-Do List</h2>
     <form ng-submit="addTodo()">
-      <input type="text" ng-model="newTodo" placeholder="Enter a new task" required>
-      <div class="add-task" ng-click="addTodo()">Add Task</div>
+      <input type="text" ng-model="newTodo" placeholder="Enter a new task" required tabindex="0">
+      <div class="add-task" ng-click="addTodo()" tabindex="0">Add Task</div>
     </form>
     <div class="filter-controls" style="display: none;">
       <span>Show: </span>
-      <div class="filter-all" ng-click="filter = 'all'" ng-class="{active: filter === 'all'}">All</div>
+      <div class="filter-all" ng-click="filter = 'all'" ng-class="{active: filter === 'all'}" tabindex="0">All</div>
     </div>
     <p>Total {{activeCount()}} task{{activeCount() !== 1 ? 's' : ''}}</p>
     <ul>
       <li ng-repeat="todo in filteredTodos()">
         <div ng-if="editingTodo && editingTodo.id === todo.id">
           <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)"
-            ng-keypress="$event.keyCode === 13 && saveEdit(todo)">
-          <div class="save-task" ng-click="saveEdit(todo)">Save</div>
-          <div class="cancel-task" ng-click="cancelEdit()">Cancel</div>
+            ng-keypress="$event.keyCode === 13 && saveEdit(todo)" tabindex="0">
+          <div class="save-task" ng-click="saveEdit(todo)" tabindex="0">Save</div>
+          <div class="cancel-task" ng-click="cancelEdit()" tabindex="0">Cancel</div>
         </div>
         <div ng-if="!editingTodo || editingTodo.id !== todo.id">
-          <span ng-dblclick="editTodo(todo)">{{ todo.text }}</span>
-          <div class="trash-icon" ng-click="removeTodo($index)">🗑️</div>
+          <span ng-dblclick="editTodo(todo)" tabindex="0">{{ todo.text }}</span>
+          <div class="trash-icon" ng-click="removeTodo($index)" tabindex="0">🗑️</div>
         </div>
       </li>
     </ul>
@@ -39,22 +39,22 @@
     <div class="task-form">
       <div class="form-row">
         <span class="label">Title</span>
-        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.title"></span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.title" tabindex="0"></span>
       </div>
       <div class="form-row">
         <span class="label">Description</span>
-        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.description"></span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.description" tabindex="0"></span>
       </div>
       <div class="form-row">
         <span class="label">Due Date</span>
-        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.dueDate"></span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.dueDate" tabindex="0"></span>
       </div>
       <div class="form-row">
         <span class="label">Status</span>
-        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.status">Pending</span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.status" tabindex="0">Pending</span>
       </div>
       <div class="form-actions">
-        <div class="btn" ng-click="vm.addTask()">Add Task</div>
+        <div class="btn" ng-click="vm.addTask()" tabindex="0">Add Task</div>
       </div>
     </div>
 
@@ -73,11 +73,11 @@
         <div class="cell">{{task.dueDate | date:'yyyy-MM-dd'}}</div>
         <div class="cell">{{task.status}}</div>
         <div class="cell">
-          <div class="nested-btn" ng-click="vm.editTask(task)">
+          <div class="nested-btn" ng-click="vm.editTask(task)" tabindex="0">
             <span>Edit</span>
             <span class="icon">✎</span>
           </div>
-          <div class="nested-btn" ng-click="vm.deleteTask($index)">
+          <div class="nested-btn" ng-click="vm.deleteTask($index)" tabindex="0">
             <span>Delete</span>
             <span class="icon">🗑</span>
           </div>
@@ -87,7 +87,7 @@
   </div>
 
     <div>
-    <canvas id="myCanvas1" width="600" height="200"></canvas>
+    <canvas id="myCanvas1" width="600" height="200" tabindex="0"></canvas>
   </div>
 
 </div>
