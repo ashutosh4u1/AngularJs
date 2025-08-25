@@ -97,14 +97,24 @@ function drawAdditionalItems() {
     if (i === currentHighlight1) {
       ctx1.strokeStyle = "blue";
       ctx1.lineWidth = 4;
+      //ctx1.stroke();
 
-      if (item.shape === "circle" || item.shape === "ellipse") {
-        ctx1.beginPath();
-        ctx1.ellipse(item.x + item.w / 2, item.y + item.h / 2, item.w / 2 + 4, item.h / 2 + 4, 0, 0, Math.PI * 2);
-        ctx1.stroke();
-      } else {
-        ctx1.strokeRect(item.x - 2, item.y - 2, item.w + 4, item.h + 4);
-      }
+       if (item.shape === "square" || item.shape === "rectangle") {
+       ctx1.strokeRect(item.x - 2, item.y - 2, item.w + 4, item.h + 4);
+       }
+       else{
+      ctx1.stroke();
+
+       }
+
+      // if (item.shape === "circle" || item.shape === "ellipse") {
+      ctx1.beginPath();
+      //   //ctx1.beginPath();
+      //   //ctx1.ellipse(item.x + item.w / 2, item.y + item.h / 2, item.w / 2 + 4, item.h / 2 + 4, 0, 0, Math.PI * 2);
+      //   ctx1.stroke();
+      // } else {
+      //   ctx1.strokeRect(item.x - 2, item.y - 2, item.w + 4, item.h + 4);
+      // }
     }
   });
 }
@@ -124,24 +134,6 @@ function drawAdditionalItems() {
       });
     }
 
-    // Highlight on focus (Tab navigation)
-    $scope.handleFocus = function (index) {
-      currentHighlight = index;
-      drawItems();
-    };
-
-    // Activate with Enter/Space
-    $scope.handleKey = function (event, index) {
-      if (event.key === "Enter" || event.key === " ") {
-        alert("Activated: " + $scope.items[index].label);
-        event.preventDefault();
-      }
-    };
-
-     $scope.handleFocus1 = function (index) {
-      currentHighlight1 = index;
-      drawAdditionalItems();
-    };
 
 
     $scope.newTask = { status: "Pending" };
