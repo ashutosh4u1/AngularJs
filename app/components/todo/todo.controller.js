@@ -21,21 +21,94 @@ angular.module("todoApp").controller("TodoController", [
       },
     ];
     let currentHighlight = -1;
+    let currentHighlight1 = -1;
     var canvas;
     var ctx;
+
+    var canvas1;
+    var ctx1;
 
     $scope.items = [
       { x: 50, y: 50, w: 60, h: 60, color: "red", label: "Red square" },
       { x: 150, y: 70, w: 60, h: 60, color: "green", label: "Green square" },
-      { x: 250, y: 40, w: 60, h: 60, color: "blue", label: "Blue square" },
+      { x: 250, y: 40, w: 60, h: 60, color: "gray", label: "Gray square" },
     ];
+
+
+    $scope.additionalShapes = [
+  { x: 50, y: 50, w: 60, h: 60, color: "red", label: "Red square", shape: "square" },
+  { x: 150, y: 70, w: 60, h: 60, color: "green", label: "Green rectangle", shape: "rectangle" },
+  { x: 250, y: 40, w: 60, h: 60, color: "gray", label: "Gray circle", shape: "circle" },
+  { x: 370, y: 60, w: 60, h: 60, color: "purple", label: "Purple ellipse", shape: "ellipse" },
+  { x: 500, y: 80, w: 60, h: 60, color: "orange", label: "Orange triangle", shape: "triangle" }
+];
 
     // Initial draw
     $timeout(() => {
       canvas = document.getElementById("myCanvas");
       ctx = canvas.getContext("2d");
       drawItems();
+
+      canvas1 = document.getElementById("myCanvas1");
+      ctx1 = canvas1.getContext("2d");
+      drawItems();
+      drawAdditionalItems();
     });
+
+
+function drawAdditionalItems() {
+  ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+
+  $scope.additionalShapes.forEach((item, i) => {
+    ctx1.fillStyle = item.color;
+
+    switch (item.shape) {
+      case "square":
+        ctx1.fillRect(item.x, item.y, item.w, item.w);
+        break;
+
+      case "rectangle":
+        ctx1.fillRect(item.x, item.y, item.w * 1.5, item.h); // wider than square
+        break;
+
+      case "circle":
+        ctx1.beginPath();
+        ctx1.arc(item.x + item.w / 2, item.y + item.h / 2, item.w / 2, 0, Math.PI * 2);
+        ctx1.fill();
+        break;
+
+      case "ellipse":
+        ctx1.beginPath();
+        ctx1.ellipse(item.x + item.w / 2, item.y + item.h / 2, item.w / 2, item.h / 3, 0, 0, Math.PI * 2);
+        ctx1.fill();
+        break;
+
+      case "triangle":
+        ctx1.beginPath();
+        ctx1.moveTo(item.x + item.w / 2, item.y); // top
+        ctx1.lineTo(item.x, item.y + item.h);     // bottom left
+        ctx1.lineTo(item.x + item.w, item.y + item.h); // bottom right
+        ctx1.closePath();
+        ctx1.fill();
+        break;
+    }
+
+    // Highlight border if selected
+    if (i === currentHighlight1) {
+      ctx1.strokeStyle = "blue";
+      ctx1.lineWidth = 4;
+
+      if (item.shape === "circle" || item.shape === "ellipse") {
+        ctx1.beginPath();
+        ctx1.ellipse(item.x + item.w / 2, item.y + item.h / 2, item.w / 2 + 4, item.h / 2 + 4, 0, 0, Math.PI * 2);
+        ctx1.stroke();
+      } else {
+        ctx1.strokeRect(item.x - 2, item.y - 2, item.w + 4, item.h + 4);
+      }
+    }
+  });
+}
+
 
     function drawItems() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -44,12 +117,32 @@ angular.module("todoApp").controller("TodoController", [
         ctx.fillRect(item.x, item.y, item.w, item.h);
 
         if (i === currentHighlight) {
-          ctx.strokeStyle = "yellow";
+          ctx.strokeStyle = "blue";
           ctx.lineWidth = 4;
           ctx.strokeRect(item.x - 2, item.y - 2, item.w + 4, item.h + 4);
         }
       });
     }
+
+    // Highlight on focus (Tab navigation)
+    $scope.handleFocus = function (index) {
+      currentHighlight = index;
+      drawItems();
+    };
+
+    // Activate with Enter/Space
+    $scope.handleKey = function (event, index) {
+      if (event.key === "Enter" || event.key === " ") {
+        alert("Activated: " + $scope.items[index].label);
+        event.preventDefault();
+      }
+    };
+
+     $scope.handleFocus1 = function (index) {
+      currentHighlight1 = index;
+      drawAdditionalItems();
+    };
+
 
     $scope.newTask = { status: "Pending" };
 

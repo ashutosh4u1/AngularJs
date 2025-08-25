@@ -1,6 +1,10 @@
 <div>
   <div>
     <canvas id="myCanvas" width="400" height="200"></canvas>
+    <div ng-repeat="item in items track by $index" class="canvas-item" tabindex="0" ng-focus="handleFocus($index)"
+      ng-keydown="handleKey($event, $index)">
+      {{item.label}}
+    </div>
   </div>
 
   <div class="todo-container">
@@ -83,6 +87,14 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+    <div>
+    <canvas id="myCanvas1" width="600" height="200"></canvas>
+    <div ng-repeat="item in additionalShapes track by $index" class="canvas-item" tabindex="0" ng-focus="handleFocus1($index)"
+      >
+      {{item.label}}
     </div>
   </div>
 
