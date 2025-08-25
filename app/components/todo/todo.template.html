@@ -1,8 +1,7 @@
 <div>
   <div>
-    <canvas id="myCanvas" width="400" height="200"></canvas>
-    <div ng-repeat="item in items track by $index" class="canvas-item" tabindex="0" ng-focus="handleFocus($index)"
-      ng-keydown="handleKey($event, $index)">
+    <canvas id="myCanvas" width="400" height="200" tabindex="0" aria-label="Canvas"></canvas>
+    <div ng-repeat="item in items track by $index" class="canvas-item" tabindex="0" ng-focus="handleFocus($index)" ng-keydown="handleKey($event, $index)" role="button" aria-label="{{item.label}}">
       {{item.label}}
     </div>
   </div>
@@ -15,14 +14,13 @@
     </form>
     <div class="filter-controls" style="display: none;">
       <span>Show: </span>
-      <div class="filter-all" ng-click="filter = 'all'" ng-class="{active: filter === 'all'}">All</div>
+      <div class="filter-all" ng-click="filter = 'all'" ng-class="{active: filter === 'all'}" tabindex="0" role="button" aria-label="Show All">All</div>
     </div>
     <p>Total {{activeCount()}} task{{activeCount() !== 1 ? 's' : ''}}</p>
     <ul>
       <li ng-repeat="todo in filteredTodos()">
         <div ng-if="editingTodo && editingTodo.id === todo.id">
-          <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)"
-            ng-keypress="$event.keyCode === 13 && saveEdit(todo)">
+          <input type="text" ng-model="editingTodo.text" ng-blur="saveEdit(todo)" ng-keypress="$event.keyCode === 13 && saveEdit(todo)">
           <div class="save-task" ng-click="saveEdit(todo)">Save</div>
           <div class="cancel-task" ng-click="cancelEdit()">Cancel</div>
         </div>
@@ -43,22 +41,22 @@
     <div class="task-form">
       <div class="form-row">
         <span class="label">Title</span>
-        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.title"></span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.title" tabindex="0" role="textbox" aria-label="Title"></span>
       </div>
       <div class="form-row">
         <span class="label">Description</span>
-        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.description"></span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.description" tabindex="0" role="textbox" aria-label="Description"></span>
       </div>
       <div class="form-row">
         <span class="label">Due Date</span>
-        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.dueDate"></span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.dueDate" tabindex="0" role="textbox" aria-label="Due Date"></span>
       </div>
       <div class="form-row">
         <span class="label">Status</span>
-        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.status">Pending</span>
+        <span class="fake-input" contenteditable="true" ng-model="vm.newTask.status" tabindex="0" role="textbox" aria-label="Status">Pending</span>
       </div>
       <div class="form-actions">
-        <div class="btn" ng-click="vm.addTask()">Add Task</div>
+        <div class="btn" ng-click="vm.addTask()" tabindex="0" role="button" aria-label="Add Task">Add Task</div>
       </div>
     </div>
 
@@ -77,11 +75,11 @@
         <div class="cell">{{task.dueDate | date:'yyyy-MM-dd'}}</div>
         <div class="cell">{{task.status}}</div>
         <div class="cell">
-          <div class="nested-btn" ng-click="vm.editTask(task)">
+          <div class="nested-btn" ng-click="vm.editTask(task)" tabindex="0" role="button" aria-label="Edit Task">
             <span>Edit</span>
             <span class="icon">✎</span>
           </div>
-          <div class="nested-btn" ng-click="vm.deleteTask($index)">
+          <div class="nested-btn" ng-click="vm.deleteTask($index)" tabindex="0" role="button" aria-label="Delete Task">
             <span>Delete</span>
             <span class="icon">🗑</span>
           </div>
@@ -91,11 +89,9 @@
   </div>
 
     <div>
-    <canvas id="myCanvas1" width="600" height="200"></canvas>
-    <div ng-repeat="item in additionalShapes track by $index" class="canvas-item" tabindex="0" ng-focus="handleFocus1($index)"
-      >
+    <canvas id="myCanvas1" width="600" height="200" tabindex="0" aria-label="Canvas 1"></canvas>
+    <div ng-repeat="item in additionalShapes track by $index" class="canvas-item" tabindex="0" ng-focus="handleFocus1($index)" role="button" aria-label="{{item.label}}">
       {{item.label}}
     </div>
   </div>
-
 </div>
