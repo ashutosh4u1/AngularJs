@@ -180,3 +180,13 @@ canvas {
     font-size: 14px;
   }
 }
+
+.canvas-keyboard {
+  position:absolute;
+}
+<div ng-repeat="item in items" 
+     tabindex="0" 
+     ng-keydown="keyPress($event, $index)"
+     ng-focus="highlight($index)"
+     style="position:absolute; left:{{item.x}}px; top:{{item.y}}px; width:{{item.w}}px; height:{{item.h}}px; opacity:0;">
+</div>
